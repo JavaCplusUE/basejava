@@ -3,7 +3,7 @@
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
-
+    int a = 1;
     void clear() {
     }
 
