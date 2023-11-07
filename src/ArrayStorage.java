@@ -7,24 +7,28 @@ public class ArrayStorage {
 
 
     void clear() {
-        for (int i = 0; i < size(); i++) {
+        for (int i = 0; i < storage.length; i++) {
             storage[i] = null;
         }
+        sizeStorage = 0;
     }
 
     void save(Resume r) {
-        int a = 1;
-        if (size() < 10) {
+        if (r.uuid == null) {
+            return;
+        }
+        if (size() < storage.length) {
             storage[size()] = r;
         }
         sizeStorage += 1;
     }
 
     Resume get(String uuid) {
-        for (int i = 0; i < size(); i++)
-            if (uuid == String.valueOf(storage[i])) {
+        for (int i = 0; i < size(); i++) {
+            if (uuid == storage[i].uuid) {
                 return storage[i];
             }
+        }
         return null;
     }
 
@@ -41,9 +45,6 @@ public class ArrayStorage {
                 break;
             }
         }
-
-
-
     }
 
     /**
@@ -51,20 +52,13 @@ public class ArrayStorage {
      */
     Resume[] getAll() {
         Resume[] getStorage = new Resume[size()];
-        for (int i = 0; i < size(); i++) {
+        for (int i = 0; i < sizeStorage; i++) {
             getStorage[i] = storage[i];
         }
         return getStorage;
     }
 
     int size() {
-        //        int count = 0;
-//        for (int i = 0; i < storage.length; i++) {
-//            if (storage[i] != null) {
-//                count++;
-//            }
-//        }
         return sizeStorage;
-
     }
 }
