@@ -32,12 +32,10 @@ public class ArrayStorage {
         for (int i = 0; i < sizeStorage; i++) {
             if (storage[i].uuid == uuid) {
                 storage[i].uuid = null;
-                for (int j = i; j < sizeStorage - i - 1; j++) {
-                    Resume temp = storage[j + 1];
-                    if (storage[j].uuid == null) {
-                        storage[j].uuid = temp.uuid;
-                        storage[j + 1].uuid = null;
-                    }
+                for (int j = i; j < sizeStorage - i + 1; j++) {
+                    Resume temp = storage[j];
+                    storage[j] = storage[j + 1];
+                    storage[j + 1] = temp;
                 }
                 sizeStorage -= 1;
                 break;
