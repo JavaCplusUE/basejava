@@ -3,28 +3,27 @@
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
-    int sizeStorage;
-
+    int countResumes;
 
     void clear() {
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < countResumes; i++) {
             storage[i] = null;
         }
-        sizeStorage = 0;
+        countResumes = 0;
     }
 
     void save(Resume r) {
         if (r.uuid == null) {
             return;
         }
-        if (size() < storage.length) {
-            storage[size()] = r;
+        if (countResumes < storage.length) {
+            storage[countResumes] = r;
         }
-        sizeStorage += 1;
+        countResumes++;
     }
 
     Resume get(String uuid) {
-        for (int i = 0; i < size(); i++) {
+        for (int i = 0; i < countResumes; i++) {
             if (uuid == storage[i].uuid) {
                 return storage[i];
             }
@@ -33,32 +32,32 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        for (int i = 0; i < sizeStorage; i++) {
+
+        for (int i = 0; i < countResumes; i++) {
             if (storage[i].uuid == uuid) {
-                storage[i].uuid = null;
-                for (int j = i; j < sizeStorage - i + 1; j++) {
-                    Resume temp = storage[j];
-                    storage[j] = storage[j + 1];
-                    storage[j + 1] = temp;
-                }
-                sizeStorage -= 1;
+                storage[i] = storage[countResumes - 1];
+                storage[countResumes - 1] = null;
+                countResumes--;
                 break;
             }
         }
+
+
     }
+
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        Resume[] getStorage = new Resume[size()];
-        for (int i = 0; i < sizeStorage; i++) {
-            getStorage[i] = storage[i];
+        Resume[] allResume = new Resume[countResumes];
+        for (int i = 0; i < countResumes; i++) {
+            allResume[i] = storage[i];
         }
-        return getStorage;
+        return allResume;
     }
 
     int size() {
-        return sizeStorage;
+        return countResumes;
     }
 }
