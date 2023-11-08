@@ -32,7 +32,6 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-
         for (int i = 0; i < countResumes; i++) {
             if (storage[i].uuid == uuid) {
                 storage[i] = storage[countResumes - 1];
@@ -41,10 +40,7 @@ public class ArrayStorage {
                 break;
             }
         }
-
-
     }
-
 
     /**
      * @return array, contains only Resumes in storage (without null)
