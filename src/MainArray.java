@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 
 /**
  * Interactive test for ArrayStorage implementation
- * (just run, no need to understand)1
+ * (just run, no need to understand)
  */
 public class MainArray {
     private final static ArrayStorage ARRAY_STORAGE = new ArrayStorage();
@@ -16,7 +16,7 @@ public class MainArray {
             System.out.print("Введите одну из команд - (list | size | save uuid | delete uuid | get uuid | clear | exit): ");
             String[] params = reader.readLine().trim().toLowerCase().split(" ");
             if (params.length < 1 || params.length > 2) {
-                System.out.println("Не/верная команда");
+                System.out.println("Неверная команда.");
                 continue;
             }
             String uuid = null;
