@@ -17,11 +17,15 @@ public class ArrayStorage {
     }
 
     public void update(Resume r) {
-
+        for (int i = 0; i < countResumes; i++) {
+            if (storage[i] == r) {
+                System.out.println("ERROR");
+            }
+        }
     }
 
-
     public void save(Resume r) {
+        update(r);
         if (r.getUuid() == null) {
             return;
         }
