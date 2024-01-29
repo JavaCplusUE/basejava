@@ -6,18 +6,23 @@ import com.urise.webapp.model.Resume;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
-    int countResumes;
+    private Resume[] storage = new Resume[10000];
+    private int countResumes;
 
-    void clear() {
+    public void clear() {
         for (int i = 0; i < countResumes; i++) {
             storage[i] = null;
         }
         countResumes = 0;
     }
 
-    void save(Resume r) {
-        if (r.uuid == null) {
+    public void update(Resume r) {
+
+    }
+
+
+    public void save(Resume r) {
+        if (r.getUuid() == null) {
             return;
         }
         if (countResumes < storage.length) {
@@ -26,18 +31,18 @@ public class ArrayStorage {
         countResumes++;
     }
 
-    Resume get(String uuid) {
+    public Resume get(String uuid) {
         for (int i = 0; i < countResumes; i++) {
-            if (uuid == storage[i].uuid) {
+            if (uuid == storage[i].getUuid()) {
                 return storage[i];
             }
         }
         return null;
     }
 
-    void delete(String uuid) {
+    public void delete(String uuid) {
         for (int i = 0; i < countResumes; i++) {
-            if (storage[i].uuid == uuid) {
+            if (storage[i].getUuid() == uuid) {
                 storage[i] = storage[countResumes - 1];
                 storage[countResumes - 1] = null;
                 countResumes--;
@@ -49,7 +54,7 @@ public class ArrayStorage {
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    Resume[] getAll() {
+    public Resume[] getAll() {
         Resume[] allResume = new Resume[countResumes];
         for (int i = 0; i < countResumes; i++) {
             allResume[i] = storage[i];
@@ -57,7 +62,7 @@ public class ArrayStorage {
         return allResume;
     }
 
-    int size() {
+    public int size() {
         return countResumes;
     }
 }
