@@ -19,12 +19,14 @@ public class ArrayStorage {
     public void update(Resume r) {
         for (int i = 0; i < countResumes; i++) {
             if (r.getUuid().equals(storage[i].getUuid())) {
-                System.out.println("ERROR");
+                System.out.println("Resume exists");
+                return;
             }
         }
     }
 
     public void save(Resume r) {
+        update(r);
         if (r.getUuid() == null) {
             return;
         }
@@ -37,6 +39,7 @@ public class ArrayStorage {
     public Resume get(String uuid) {
         for (int i = 0; i < countResumes; i++) {
             if (uuid == storage[i].getUuid()) {
+                System.out.println("Resume exists");
                 return storage[i];
             }
         }
@@ -46,6 +49,7 @@ public class ArrayStorage {
     public void delete(String uuid) {
         for (int i = 0; i < countResumes; i++) {
             if (storage[i].getUuid() == uuid) {
+                System.out.println("Resume exists");
                 storage[i] = storage[countResumes - 1];
                 storage[countResumes - 1] = null;
                 countResumes--;
