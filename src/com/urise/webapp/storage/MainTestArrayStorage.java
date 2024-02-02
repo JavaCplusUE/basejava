@@ -1,7 +1,6 @@
 package com.urise.webapp.storage;
 
 
-import com.urise.webapp.MainArray;
 import com.urise.webapp.model.Resume;
 
 /**
