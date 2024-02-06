@@ -12,25 +12,23 @@ public class ArrayStorage {
     private final Resume[] storage = new Resume[STORAGE_LIMIT];
     private int countResumes;
 
-    int index;
-
     public void clear() {
         Arrays.fill(storage, 0, countResumes, null);
         countResumes = 0;
     }
 
     public void update(Resume r) {
-        index = getIndex(r.getUuid());
+        int index = getIndex(r.getUuid());
         if (index != -1) {
             System.out.println("Resume " + r + " updated");
-            storage[getIndex(r.getUuid())] = r;
+            storage[index] = r;
         } else {
             System.out.println("Resume " + r + " no exists");
         }
     }
 
     public void save(Resume r) {
-        index = getIndex(r.getUuid());
+        int index = getIndex(r.getUuid());
         if (countResumes > STORAGE_LIMIT) {
             System.out.println("Resume overflow");
         } else if (index != -1) {
@@ -43,9 +41,9 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
-        index = getIndex(uuid);
+        int index = getIndex(uuid);
         if (index != -1) {
-            return storage[getIndex(uuid)];
+            return storage[index];
         } else {
             System.out.println("Resume " + uuid + " no exists");
             return null;
@@ -53,10 +51,10 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        index = getIndex(uuid);
+        int index = getIndex(uuid);
         if (index != -1) {
             System.out.println("Resume " + uuid + " deleted");
-            storage[getIndex(uuid)] = storage[countResumes - 1];
+            storage[index] = storage[countResumes - 1];
             storage[countResumes - 1] = null;
             countResumes--;
         } else {
